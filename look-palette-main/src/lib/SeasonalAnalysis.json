@@ -1,0 +1,186 @@
+{
+	"schema": {
+		"version": "1.0",
+		"axes": ["hue", "value", "chroma", "contrast"],
+		"scoring": {
+			"delta_scale": 1,
+			"notes": "hue: + warm / - cool; value: + dark / - light; chroma: + bright / - muted; contrast: + high / - low"
+		}
+	},
+	"questions": [
+		{
+			"id": "hair_color",
+			"text": "Your natural hair colour",
+			"required": true,
+			"options": [
+				{
+					"id": "light_blonde",
+					"label": "Light Blonde",
+					"deltas": { "value": -2, "hue": -1, "contrast": -1 }
+				},
+				{
+					"id": "golden_blonde",
+					"label": "Golden Blonde",
+					"deltas": { "value": -1, "hue": 1, "contrast": -1 }
+				},
+				{
+					"id": "ash_blonde",
+					"label": "Ash Blonde",
+					"deltas": { "value": -1, "hue": -1, "contrast": -1 }
+				},
+				{
+					"id": "light_brown",
+					"label": "Light Brown",
+					"deltas": { "value": 0, "hue": 0, "contrast": 0 }
+				},
+				{
+					"id": "medium_brown",
+					"label": "Medium Brown",
+					"deltas": { "value": 1, "hue": 0, "contrast": 0 }
+				},
+				{
+					"id": "dark_brown",
+					"label": "Dark Brown",
+					"deltas": { "value": 2, "hue": 0, "contrast": 1 }
+				},
+				{ "id": "black", "label": "Black", "deltas": { "value": 3, "hue": 0, "contrast": 2 } },
+				{
+					"id": "red_auburn",
+					"label": "Red / Auburn",
+					"deltas": { "value": 1, "hue": 2, "contrast": 0 }
+				}
+			]
+		},
+		{
+			"id": "eye_color",
+			"text": "Your eye colour",
+			"required": true,
+			"options": [
+				{
+					"id": "light_blue",
+					"label": "Light / Ice Blue",
+					"deltas": { "value": -2, "hue": -2, "contrast": 1 }
+				},
+				{
+					"id": "grey_blue",
+					"label": "Grey-Blue",
+					"deltas": { "value": -1, "hue": -1, "contrast": 0 }
+				},
+				{
+					"id": "green_hazel",
+					"label": "Green / Hazel",
+					"deltas": { "value": 0, "hue": 1, "contrast": 0 }
+				},
+				{
+					"id": "amber",
+					"label": "Golden Brown / Amber",
+					"deltas": { "value": 1, "hue": 2, "contrast": 0 }
+				},
+				{
+					"id": "medium_brown",
+					"label": "Medium Brown",
+					"deltas": { "value": 1, "hue": 0, "contrast": 0 }
+				},
+				{
+					"id": "dark_brown",
+					"label": "Dark Brown",
+					"deltas": { "value": 2, "hue": 0, "contrast": 1 }
+				}
+			]
+		},
+		{
+			"id": "skin_depth",
+			"text": "How would you describe the depth of your natural skin tone?",
+			"help": "Select the option that best matches relative to your ethnicity. Every ethnicity has different skin depths ranging from very light to very deep.",
+			"required": true,
+			"options": [
+				{
+					"id": "very_light",
+					"label": "Very Light",
+					"examples": ["porcelain", "very pale"],
+					"deltas": { "value": -2 }
+				},
+				{
+					"id": "light",
+					"label": "Light",
+					"examples": ["ivory", "light beige"],
+					"deltas": { "value": -1 }
+				},
+				{
+					"id": "medium",
+					"label": "Medium",
+					"examples": ["beige", "olive/tan"],
+					"deltas": { "value": 0 }
+				},
+				{
+					"id": "deep",
+					"label": "Deep",
+					"examples": ["brown", "rich tan"],
+					"deltas": { "value": 1 }
+				},
+				{
+					"id": "very_deep",
+					"label": "Very Deep",
+					"examples": ["espresso", "ebony"],
+					"deltas": { "value": 2 }
+				}
+			],
+			"notes": "No hue/undertone deltas here. Collect undertone via separate questions (jewelry, veins, foundation match)."
+		},
+		{
+			"id": "undertone",
+			"text": "Your skin undertone",
+			"help": "You can find your skin undertone by looking at the veins on your wrist. If the veins are blue, you have a cool undertone. If the veins are green, you have a warm undertone.",
+			"required": false,
+			"options": [
+				{ "id": "cool", "label": "Cool (pink/rosy)", "deltas": { "hue": -3 } },
+				{ "id": "neutral", "label": "Neutral / hard to tell", "deltas": {} },
+				{ "id": "warm", "label": "Warm (golden/peach)", "deltas": { "hue": 3 } }
+			]
+		},
+		{
+			"id": "jewelry",
+			"text": "Which looks healthier on you?",
+			"required": false,
+			"options": [
+				{ "id": "silver", "label": "Silver", "deltas": { "hue": -2 } },
+				{ "id": "both", "label": "Both", "deltas": {} },
+				{ "id": "gold", "label": "Gold", "deltas": { "hue": 2 } }
+			]
+		},
+		{
+			"id": "sun_reaction",
+			"text": "In the sun you mostly…",
+			"required": false,
+			"options": [
+				{ "id": "burn", "label": "Burn quickly", "deltas": { "hue": -1, "value": -1 } },
+				{
+					"id": "burn_then_tan",
+					"label": "Burn then tan slowly",
+					"deltas": { "hue": 0, "value": 0 }
+				},
+				{ "id": "tan", "label": "Tan easily", "deltas": { "hue": 1, "value": 1 } }
+			]
+		},
+		{
+			"id": "bright_pref",
+			"text": "Bright, clear colors feel…",
+			"required": false,
+			"options": [
+				{ "id": "energized", "label": "Energizing", "deltas": { "chroma": 2, "contrast": 1 } },
+				{ "id": "neutral", "label": "Neutral", "deltas": {} },
+				{ "id": "harsh", "label": "Too harsh", "deltas": { "chroma": -2, "contrast": -1 } }
+			]
+		},
+		{
+			"id": "contrast_pref",
+			"text": "High-contrast outfits (black + white) look…",
+			"required": false,
+			"options": [
+				{ "id": "great", "label": "Great", "deltas": { "contrast": 2, "chroma": 1 } },
+				{ "id": "ok", "label": "Okay", "deltas": {} },
+				{ "id": "harsh", "label": "Harsh", "deltas": { "contrast": -2, "chroma": -1 } }
+			]
+		}
+	]
+}
