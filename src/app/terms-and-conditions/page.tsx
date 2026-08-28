@@ -8,5 +8,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function TermsPage() {
-  return <StaticLegacyPage routeSegments={["terms-and-conditions"]} />;
+  return (
+    <StaticLegacyPage
+      routeSegments={["terms-and-conditions"]}
+      hero={{
+        title: "Terms & Conditions",
+        description: "Review the terms and conditions for using Look Palette.",
+        image: "/hero/hero-image-terms-and-conditions.avif",
+        tone: "light",
+      }}
+    />
+  );
 }

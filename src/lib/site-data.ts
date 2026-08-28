@@ -1,5 +1,4 @@
 import seasonalQuestionnaire from "@/lib/data/SeasonalAnalysis.json";
-import { tagToSlug } from "@/lib/data/functions";
 import { heroSeasonalPalettes } from "@/lib/data/heroSeasonalPalettes";
 import { paletteDetails } from "@/lib/data/paletteDetails";
 import {
@@ -26,9 +25,10 @@ const paletteCollections = {
 
 export const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "/tools", label: "Tools" },
   { href: "/palettes", label: "Palettes" },
-  { href: "/blog", label: "Blog" },
+  { href: "/tools/seasonal-color-analysis", label: "Early Access" },
+  { href: "/tools/color-picker", label: "Color Picker" },
+  { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -36,21 +36,23 @@ export const navigationLinks = [
 export const footerGroups = [
   {
     title: "Explore",
-    links: navigationLinks,
-  },
-  {
-    title: "Popular Tools",
     links: [
-      { href: "/tools/seasonal-color-analysis", label: "Seasonal Color Analysis" },
-      { href: "/tools/color-picker", label: "Image Color Picker" },
-      { href: "/tools/seasonal-style-analysis", label: "Seasonal Style Analysis" },
+      { href: "/tools/seasonal-color-analysis", label: "Color Analysis" },
+      { href: "/palettes", label: "Palettes" },
+      { href: "/tools/color-picker", label: "Color Picker" },
     ],
   },
   {
-    title: "Policies",
+    title: "Look Palette",
     links: [
+      { href: "/about", label: "About" },
       { href: "/faq", label: "FAQ" },
-      { href: "/pricing", label: "Pricing" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
       { href: "/privacy-policy", label: "Privacy Policy" },
       { href: "/terms-and-conditions", label: "Terms & Conditions" },
     ],
@@ -138,10 +140,6 @@ export function getPaletteColors(paletteName: string, size: PaletteSize) {
   }
 
   return [];
-}
-
-export function getPaletteTagHref(tag: string) {
-  return `/blog/tag/${tagToSlug(tag)}`;
 }
 
 export function getPaletteQuestionnaire() {

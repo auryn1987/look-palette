@@ -361,7 +361,10 @@ export function SeasonalAnalysisTool() {
       ) : (
         <div className="surface rounded-[2rem] p-6 sm:p-8">
           {paletteData ? (
-            <div className="mx-auto mb-8 max-w-xl overflow-hidden rounded-[1.75rem] border border-black/8 bg-white">
+            <Link
+              href={`/palettes/${paletteData.slug}`}
+              className="mx-auto mb-8 block max-w-xl overflow-hidden rounded-[1.75rem] border border-black/8 bg-white transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
               <div className="relative aspect-square">
                 <Image
                   src={paletteData.image}
@@ -385,14 +388,9 @@ export function SeasonalAnalysisTool() {
                   Your seasonal palette is {paletteData.name}
                 </h2>
                 <p className="mt-3 leading-7 text-stone-600">{paletteData.description}</p>
-                <Link
-                  href={`/palettes/${paletteData.slug}`}
-                  className="button-primary mt-5 w-full"
-                >
-                  View Palette
-                </Link>
+                <p className="mt-5 text-sm font-semibold text-stone-950">View Palette -&gt;</p>
               </div>
-            </div>
+            </Link>
           ) : null}
 
           <div className="rounded-[1.5rem] bg-stone-50 p-5">

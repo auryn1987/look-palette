@@ -2,9 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { PaletteSizeGrid } from "@/components/palette-size-grid";
-import { SeasonBadge } from "@/components/season-badge";
 import { allPaletteSummaries, getPaletteDetail } from "@/lib/site-data";
 import { startCase } from "@/lib/utils";
+
+const lightTextPaletteNames = new Set([
+  "Deep Winter",
+  "Clear Winter",
+  "Warm Autumn",
+  "Warm Spring",
+  "Cool Summer",
+  "Cool Winter",
+]);
 
 export async function generateStaticParams() {
   return allPaletteSummaries.map((palette) => ({ palette: palette.slug }));
@@ -109,6 +117,8 @@ export default async function PaletteDetailPage({
     notFound();
   }
 
+  const useLightHeaderText = lightTextPaletteNames.has(detail.name);
+
   return (
     <div>
       <header className="relative overflow-hidden border-b border-black/10 bg-stone-950">
@@ -121,16 +131,37 @@ export default async function PaletteDetailPage({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15" />
+          <div
+            className={
+              useLightHeaderText
+                ? "absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15"
+                : "absolute inset-0 bg-gradient-to-r from-white/72 via-white/44 to-white/16"
+            }
+          />
         </div>
         <div className="shell relative py-20 sm:py-24">
-          <div className="max-w-3xl">
-            <SeasonBadge season={detail.name} />
-            <h1 className="mt-5 text-balance text-5xl font-semibold text-white sm:text-6xl">
+          <div className="max-w-6xl">
+            <h1
+              className={`max-w-5xl text-balance text-5xl font-semibold sm:text-6xl ${
+                useLightHeaderText ? "text-white" : "text-black"
+              }`}
+            >
               {detail.name}
             </h1>
-            <p className="mt-4 text-xl text-white/85">{detail.subtitle}</p>
-            <p className="mt-5 max-w-2xl leading-8 text-white/75">{detail.description}</p>
+            <p
+              className={`mt-4 max-w-4xl text-xl ${
+                useLightHeaderText ? "text-white" : "text-black"
+              }`}
+            >
+              {detail.subtitle}
+            </p>
+            <p
+              className={`mt-5 max-w-5xl text-lg leading-8 ${
+                useLightHeaderText ? "text-white/75" : "text-black/75"
+              }`}
+            >
+              {detail.description}
+            </p>
           </div>
         </div>
       </header>

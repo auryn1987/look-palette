@@ -1,36 +1,76 @@
 import Link from "next/link";
+import { EarlyAccessForm } from "@/components/early-access-form";
 import { PaletteCard } from "@/components/palette-card";
 import { allPaletteSummaries } from "@/lib/site-data";
 
 export default function HomePage() {
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-black/10 bg-[var(--color-ink)]">
-        <div className="absolute inset-0 bg-[url('/hero/hero-spring-clear.avif')] bg-cover bg-center opacity-35" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_24%),linear-gradient(120deg,rgba(0,0,0,0.72),rgba(0,0,0,0.35))]" />
+      <section className="relative overflow-hidden border-b border-black/10 bg-[var(--color-paper)]">
+        <div className="absolute inset-0 bg-[url('/hero/hero-spring-clear.avif')] bg-cover bg-center opacity-80" />
+        <div className="absolute inset-0 bg-white/28" />
         <div className="shell relative py-24 sm:py-32">
-          <div className="max-w-4xl">
-            <p className="eyebrow text-white/75">Seasonal Color Analysis</p>
-            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-semibold text-white sm:text-7xl">
-              Discover the colors that make your features feel unmistakably alive.
+          <div className="max-w-4xl rounded-[2rem] bg-[rgba(255,253,249,0.78)] p-8 shadow-[0_24px_60px_rgba(51,38,22,0.1)] backdrop-blur-sm sm:p-10">
+            <h1 className="max-w-3xl text-balance text-5xl font-semibold text-stone-950 sm:text-7xl">
+              Discover the colors that look best on you
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/82 sm:text-xl">
-              Explore all twelve seasonal palettes, use the guided questionnaire,
-              and build color confidence with practical tools instead of guesswork.
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl">
+              Find your seasonal color palette and learn which colors complement
+              you - from what to wear to what to shop.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link className="button-primary" href="/tools/seasonal-color-analysis">
-                Start Your Color Analysis
-              </Link>
-              <Link className="button-secondary" href="/palettes">
-                Browse Seasonal Palettes
-              </Link>
+            <p className="mt-6 text-base font-semibold uppercase tracking-[0.16em] text-stone-950">
+              Free seasonal color analysis. Coming soon.
+            </p>
+            <div className="mt-10 max-w-2xl rounded-[1.5rem] bg-white p-5">
+              <EarlyAccessForm
+                source="home-hero"
+                buttonLabel="Join Waitlist"
+                placeholder="Email address"
+                theme="light"
+              />
+              <p className="mt-3 text-sm text-stone-600">
+                Join the early access list and be among the first to discover
+                your palette.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="shell section-space">
+        <div className="surface mb-12 rounded-[2rem] px-6 py-10 sm:px-10">
+          <div className="grid gap-8 lg:grid-cols-3">
+            {[
+              {
+                step: "01",
+                title: "Join early access",
+                description:
+                  "Enter your email to be among the first to try Look Palette's free seasonal color analysis.",
+              },
+              {
+                step: "02",
+                title: "Discover your best colors",
+                description:
+                  "When Look Palette launches, upload a photo to discover your seasonal palette and the colors that complement you.",
+              },
+              {
+                step: "03",
+                title: "Shop your palette",
+                description:
+                  "Explore clothing recommendations selected to match your seasonal colors and make shopping easier.",
+              },
+            ].map((item) => (
+              <div key={item.step}>
+                <p className="font-display text-5xl text-[var(--color-accent)]">
+                  {item.step}
+                </p>
+                <h2 className="mt-4 text-2xl font-semibold">{item.title}</h2>
+                <p className="mt-3 leading-7 text-stone-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mb-10 max-w-3xl">
           <p className="eyebrow text-[var(--color-accent)]">Palette Library</p>
           <h2 className="mt-3 text-4xl font-semibold text-stone-950">
@@ -49,89 +89,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="shell">
-        <div className="surface rounded-[2rem] px-6 py-10 sm:px-10">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {[
-              {
-                step: "01",
-                title: "Answer guided questions",
-                description:
-                  "Use the seasonal analysis questionnaire to measure your undertone, value, chroma, and contrast.",
-              },
-              {
-                step: "02",
-                title: "Read your palette results",
-                description:
-                  "See which season matches your answers and compare the colors that flatter you most.",
-              },
-              {
-                step: "03",
-                title: "Apply it in real life",
-                description:
-                  "Use the palette library and color tools when shopping, styling, or planning your wardrobe.",
-              },
-            ].map((item) => (
-              <div key={item.step}>
-                <p className="font-display text-5xl text-[var(--color-accent)]">
-                  {item.step}
-                </p>
-                <h3 className="mt-4 text-2xl font-semibold">{item.title}</h3>
-                <p className="mt-3 leading-7 text-stone-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="shell section-space">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow text-[var(--color-accent)]">Tools</p>
+          <p className="eyebrow text-[var(--color-accent)]">Free Tool</p>
           <h2 className="mt-3 text-4xl font-semibold">
-            Useful workflows, not just inspiration
+            Use the image color picker today
           </h2>
           <p className="mt-4 text-lg leading-8 text-stone-600">
-            The new Next.js app keeps the strongest parts of the old product: a guided
-            seasonal analysis flow and an image color picker for extracting swatches
-            from photos, outfit screenshots, and moodboards.
+            While the personalized analysis experience is still in early access, the
+            image color picker is already live and useful for pulling swatches from
+            outfits, screenshots, moodboards, and inspiration images.
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {[
-            {
-              href: "/tools/seasonal-color-analysis",
-              image: "/images/seasonal-color-analysis-card.avif",
-              title: "Seasonal Color Analysis",
-              description:
-                "A practical questionnaire that translates your natural features into a clear seasonal result.",
-            },
-            {
-              href: "/tools/color-picker",
-              image: "/images/color-picker-card.avif",
-              title: "Image Color Picker",
-              description:
-                "Upload a photo, click the colors you love, and export swatches in multiple formats.",
-            },
-          ].map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="surface group overflow-hidden rounded-[2rem]"
-            >
-              <div
-                className="h-64 bg-cover bg-center transition duration-300 group-hover:scale-[1.01]"
-                style={{ backgroundImage: `url('${tool.image}')` }}
-              />
-              <div className="p-8">
-                <h3 className="text-2xl font-semibold">{tool.title}</h3>
-                <p className="mt-3 leading-7 text-stone-600">{tool.description}</p>
-                <span className="mt-5 inline-flex text-sm font-semibold text-[var(--color-brand)]">
-                  Open tool -&gt;
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <Link
+          href="/tools/color-picker"
+          className="surface group block overflow-hidden rounded-[2rem]"
+        >
+          <div
+            className="h-72 bg-cover bg-center transition duration-300 group-hover:scale-[1.01]"
+            style={{ backgroundImage: "url('/images/color-picker-card.avif')" }}
+          />
+          <div className="p-8">
+            <h3 className="text-2xl font-semibold">Image Color Picker</h3>
+            <p className="mt-3 max-w-3xl leading-7 text-stone-600">
+              Upload a photo, click the colors you love, and export swatches in
+              multiple formats.
+            </p>
+            <span className="mt-5 inline-flex text-sm font-semibold text-black">
+              Open tool -&gt;
+            </span>
+          </div>
+        </Link>
       </section>
     </div>
   );

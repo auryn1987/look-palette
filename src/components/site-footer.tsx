@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NewsletterForm } from "@/components/newsletter-form";
+import { EarlyAccessForm } from "@/components/early-access-form";
 import { footerGroups, socialLinks } from "@/lib/site-data";
 
 export function SiteFooter() {
@@ -15,8 +15,8 @@ export function SiteFooter() {
               LOOK PALETTE
             </Link>
             <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
-              Seasonal color analysis, curated palettes, and practical tools to help
-              people build wardrobes that feel more intentional.
+              Discover the colors that complement you, explore your seasonal
+              palette, and find clothing in colors made for you.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               {socialLinks.map((link) => (
@@ -63,13 +63,14 @@ export function SiteFooter() {
         <div className="mt-12 grid gap-8 border-t border-white/10 pt-10 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
-              Newsletter
+              Get Early Access
             </p>
             <p className="mt-3 max-w-lg text-sm leading-7 text-white/70">
-              Product updates, palette notes, and new tools sent occasionally.
+              Be among the first to discover your seasonal palette with
+              Look Palette&apos;s free color analysis.
             </p>
           </div>
-          <NewsletterForm />
+          <EarlyAccessForm source="footer" buttonLabel="Get Early Access" />
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-sm text-white/55">

@@ -4,14 +4,18 @@ import type { PaletteSummary } from "@/lib/site-data";
 
 export function PaletteCard({ palette }: { palette: PaletteSummary }) {
   return (
-    <article className="surface overflow-hidden rounded-[1.75rem]">
+    <Link
+      className="surface group block overflow-hidden rounded-[1.75rem] transition hover:-translate-y-0.5 hover:shadow-[0_24px_60px_rgba(51,38,22,0.12)]"
+      href={`/palettes/${palette.slug}`}
+      aria-label={`View ${palette.name} palette`}
+    >
       <div className="relative aspect-square overflow-hidden">
         <Image
           src={palette.image}
           alt={palette.name}
           fill
           sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
-          className="object-cover transition-transform duration-300 hover:scale-[1.03]"
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </div>
       <div className="grid grid-cols-10">
@@ -30,10 +34,8 @@ export function PaletteCard({ palette }: { palette: PaletteSummary }) {
         <p className="mt-3 text-sm leading-7 text-stone-600">
           {palette.shortDescription}
         </p>
-        <Link className="button-primary mt-5 w-full" href={`/palettes/${palette.slug}`}>
-          View Palette
-        </Link>
+        <p className="mt-5 text-sm font-semibold text-stone-950">View Palette -&gt;</p>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -4,7 +4,7 @@ import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
   title: "Tools",
-  description: "Explore Look Palette tools for color analysis and palette discovery.",
+  description: "Explore Look Palette's early access page and live image color picker.",
 };
 
 export default function ToolsPage() {
@@ -12,15 +12,15 @@ export default function ToolsPage() {
     <div>
       <PageHero
         title="Tools"
-        description="Discover your palette, extract swatches from images, and explore new ways to work with color."
+        description="Join early access for seasonal color analysis or use the live image color picker today."
         image="/hero/hero-image-tools.avif"
       />
       <div className="shell section-space space-y-16">
         <section className="mx-auto max-w-3xl text-center">
           <p className="text-lg leading-8 text-stone-600">
-            The original Svelte project centered around practical tools, so the Next.js
-            rebuild keeps that same focus: a guided seasonal analysis flow and an image
-            color picker that helps turn inspiration into usable palettes.
+            The launch site now focuses on one future product and one live utility:
+            early access for personalized seasonal color analysis, plus a public image
+            color picker people can use right away.
           </p>
         </section>
 
@@ -29,12 +29,13 @@ export default function ToolsPage() {
             {
               href: "/tools/seasonal-color-analysis",
               image: "/images/seasonal-color-analysis-card.avif",
-              title: "Seasonal Color Analysis",
+              title: "Seasonal Color Analysis Early Access",
               bullets: [
-                "Comprehensive questionnaire",
-                "Ranked characteristic results",
-                "Direct links to matching palettes",
+                "Join the waitlist",
+                "See what the product is becoming",
+                "Get notified when access opens",
               ],
+              buttonLabel: "Join Early Access",
             },
             {
               href: "/tools/color-picker",
@@ -45,6 +46,7 @@ export default function ToolsPage() {
                 "Click to sample exact colors",
                 "Export swatches in multiple formats",
               ],
+              buttonLabel: "Open Tool",
             },
           ].map((tool) => (
             <div key={tool.href} className="surface overflow-hidden rounded-[2rem]">
@@ -60,21 +62,11 @@ export default function ToolsPage() {
                   ))}
                 </ul>
                 <Link className="button-primary mt-6 w-full" href={tool.href}>
-                  Open Tool
+                  {tool.buttonLabel}
                 </Link>
               </div>
             </div>
           ))}
-        </section>
-
-        <section className="surface rounded-[2rem] p-8 text-center sm:p-12">
-          <p className="eyebrow text-[var(--color-accent)]">Next Up</p>
-          <h2 className="mt-3 text-3xl font-semibold">More tools are on the roadmap</h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-8 text-stone-600">
-            The style-analysis route from the original project is preserved in this
-            migration as a placeholder while the richer backend-backed workflows are
-            redesigned.
-          </p>
         </section>
       </div>
     </div>

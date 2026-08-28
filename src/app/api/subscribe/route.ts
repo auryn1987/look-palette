@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = (await request.json()) as { email?: string };
+  const body = (await request.json()) as { email?: string; source?: string };
   const email = body.email?.trim().toLowerCase() ?? "";
 
   if (!emailPattern.test(email)) {
@@ -46,11 +46,14 @@ export async function POST(request: NextRequest) {
   }
 
   if (subscribedEmails.has(email)) {
-    return Response.json({ error: "Email already subscribed." }, { status: 400 });
+    return Response.json(
+      { error: "This email is already on the early access list." },
+      { status: 400 },
+    );
   }
 
   subscribedEmails.add(email);
-  console.log("Newsletter signup captured:", email);
+  console.log("Early access signup captured:", { email, source: body.source ?? "unknown" });
 
-  return Response.json({ message: "Subscribed successfully." });
+  return Response.json({ message: "You're on the early access list." });
 }

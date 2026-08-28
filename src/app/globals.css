@@ -28,9 +28,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top left, rgba(221, 109, 59, 0.12), transparent 28%),
-    linear-gradient(180deg, #fbf7f1 0%, #f7f0e6 100%);
+  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-inter), sans-serif;
 }

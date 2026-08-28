@@ -8,5 +8,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function PrivacyPolicyPage() {
-  return <StaticLegacyPage routeSegments={["privacy-policy"]} />;
+  return (
+    <StaticLegacyPage
+      routeSegments={["privacy-policy"]}
+      hero={{
+        title: "Privacy Policy",
+        description:
+          "Learn how Look Palette collects, uses, and protects your personal information.",
+        image: "/hero/hero-image-privacy-policy.avif",
+        tone: "light",
+      }}
+    />
+  );
 }
