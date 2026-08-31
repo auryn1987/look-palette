@@ -1,9 +1,15 @@
+import { fetchMutation } from "convex/nextjs";
+import { ConvexError } from "convex/values";
 import type { NextRequest } from "next/server";
+import { api } from "../../../../convex/_generated/api";
+import {
+  getConvexErrorMessage,
+  isConvexConfigured,
+} from "@/lib/convex-errors";
 
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 3;
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function getClientIp(request: NextRequest) {
   return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -37,76 +43,43 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = (await request.json()) as {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    message?: string;
-  };
-
-  const firstName = body.firstName?.trim() ?? "";
-  const lastName = body.lastName?.trim() ?? "";
-  const email = body.email?.trim().toLowerCase() ?? "";
-  const message = body.message?.trim() ?? "";
-
-  if (!firstName || !lastName || !email || !message) {
-    return Response.json({ error: "All fields are required." }, { status: 400 });
-  }
-
-  if (!emailPattern.test(email)) {
-    return Response.json({ error: "Invalid email format." }, { status: 400 });
-  }
-
-  if (firstName.length > 50 || lastName.length > 50) {
+  if (!isConvexConfigured()) {
     return Response.json(
-      { error: "Names must be 50 characters or less." },
-      { status: 400 },
+      { error: "Contact form is not available yet. Please try again later." },
+      { status: 503 },
     );
   }
 
-  if (message.length < 10 || message.length > 1000) {
-    return Response.json(
-      { error: "Message must be between 10 and 1000 characters." },
-      { status: 400 },
-    );
-  }
+  try {
+    const body = (await request.json()) as {
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+      message?: string;
+    };
 
-  if (process.env.RESEND_API_KEY) {
-    const resendResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: process.env.RESEND_FROM_EMAIL ?? "Look Palette <noreply@lookpalette.com>",
-        to: [process.env.CONTACT_TO_EMAIL ?? "contact@lookpalette.com"],
-        subject: `New Contact Form Submission from ${firstName} ${lastName}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message.replace(/\n/g, "<br>")}</p>
-        `,
-      }),
+    await fetchMutation(api.contact.submit, {
+      firstName: body.firstName ?? "",
+      lastName: body.lastName ?? "",
+      email: body.email ?? "",
+      message: body.message ?? "",
     });
 
-    if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
+    return Response.json({ message: "Message sent successfully." });
+  } catch (error) {
+    if (error instanceof ConvexError) {
       return Response.json(
-        { error: `Failed to send message: ${errorText}` },
-        { status: 500 },
+        {
+          error: getConvexErrorMessage(error, "Unable to send your message."),
+        },
+        { status: 400 },
       );
     }
-  } else {
-    console.log("Contact submission received without RESEND_API_KEY:", {
-      firstName,
-      lastName,
-      email,
-      message,
-    });
-  }
 
-  return Response.json({ message: "Message sent successfully." });
+    console.error("Contact submission failed:", error);
+    return Response.json(
+      { error: "Unable to send your message." },
+      { status: 500 },
+    );
+  }
 }

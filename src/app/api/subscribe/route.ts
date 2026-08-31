@@ -1,10 +1,15 @@
+import { fetchMutation } from "convex/nextjs";
+import { ConvexError } from "convex/values";
 import type { NextRequest } from "next/server";
+import { api } from "../../../../convex/_generated/api";
+import {
+  getConvexErrorMessage,
+  isConvexConfigured,
+} from "@/lib/convex-errors";
 
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
-const subscribedEmails = new Set<string>();
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function getClientIp(request: NextRequest) {
   return request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
@@ -38,22 +43,42 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const body = (await request.json()) as { email?: string; source?: string };
-  const email = body.email?.trim().toLowerCase() ?? "";
-
-  if (!emailPattern.test(email)) {
-    return Response.json({ error: "Invalid email format." }, { status: 400 });
-  }
-
-  if (subscribedEmails.has(email)) {
+  if (!isConvexConfigured()) {
     return Response.json(
-      { error: "This email is already on the early access list." },
-      { status: 400 },
+      { error: "Waitlist is not available yet. Please try again later." },
+      { status: 503 },
     );
   }
 
-  subscribedEmails.add(email);
-  console.log("Early access signup captured:", { email, source: body.source ?? "unknown" });
+  try {
+    const body = (await request.json()) as { email?: string; source?: string };
+    const result = await fetchMutation(api.waitlist.subscribe, {
+      email: body.email ?? "",
+      source: body.source ?? "unknown",
+    });
 
-  return Response.json({ message: "You're on the early access list." });
+    return Response.json({
+      message: result.alreadySubscribed
+        ? "You're already on the early access list."
+        : "You're on the early access list.",
+    });
+  } catch (error) {
+    if (error instanceof ConvexError) {
+      return Response.json(
+        {
+          error: getConvexErrorMessage(
+            error,
+            "Unable to join the list right now.",
+          ),
+        },
+        { status: 400 },
+      );
+    }
+
+    console.error("Waitlist signup failed:", error);
+    return Response.json(
+      { error: "Unable to join the list right now." },
+      { status: 500 },
+    );
+  }
 }
