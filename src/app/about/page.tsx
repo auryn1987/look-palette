@@ -30,11 +30,11 @@ export default function AboutPage() {
           )
           .replace(
             'class="btn btn-outline btn-lg"',
-            'class="inline-flex min-h-12 items-center justify-center rounded-full border border-black px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-950 no-underline transition hover:bg-black hover:text-white"',
+            'class="inline-flex min-h-12 items-center justify-center rounded-full border border-black bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] !text-stone-950 !no-underline transition hover:!border-black hover:!bg-black hover:!text-white"',
           )
           .replace(
             'class="btn btn-primary btn-lg"',
-            'class="inline-flex min-h-12 items-center justify-center rounded-full border border-black bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-950 no-underline transition hover:bg-black hover:text-white"',
+            'class="inline-flex min-h-12 items-center justify-center rounded-full border border-black bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] !text-stone-950 !no-underline transition hover:!border-black hover:!bg-black hover:!text-white"',
           )
       }
     />

@@ -15,6 +15,8 @@ export default function ColorPickerPage() {
         title="Image Color Picker"
         description="Upload a photo, click the swatches that catch your eye, and build a custom palette you can actually reuse."
         image="/hero/hero-image-color-picker.avif"
+        tone="light"
+        overlay="none"
       />
       <div className="shell section-space">
         <ImageColorPicker />

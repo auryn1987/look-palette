@@ -6,6 +6,7 @@ interface PageHeroProps {
   description: string;
   image: string;
   tone?: "light" | "dark";
+  overlay?: "light" | "dark" | "none";
 }
 
 export function PageHero({
@@ -13,6 +14,7 @@ export function PageHero({
   description,
   image,
   tone = "dark",
+  overlay = tone,
 }: PageHeroProps) {
   return (
     <header className="relative overflow-hidden border-b border-black/10 bg-stone-900">
@@ -25,14 +27,16 @@ export function PageHero({
           sizes="100vw"
           className="object-cover"
         />
-        <div
-          className={cn(
-            "absolute inset-0",
-            tone === "dark"
-              ? "bg-gradient-to-r from-black/65 via-black/35 to-black/20"
-              : "bg-gradient-to-r from-white/70 via-white/45 to-white/20",
-          )}
-        />
+        {overlay === "none" ? null : (
+          <div
+            className={cn(
+              "absolute inset-0",
+              overlay === "dark"
+                ? "bg-gradient-to-r from-black/65 via-black/35 to-black/20"
+                : "bg-gradient-to-r from-white/70 via-white/45 to-white/20",
+            )}
+          />
+        )}
       </div>
       <div className="shell relative py-20 sm:py-24">
         <div className="max-w-3xl">

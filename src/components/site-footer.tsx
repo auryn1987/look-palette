@@ -32,6 +32,7 @@ export function SiteFooter() {
                     alt={link.label}
                     width={link.size}
                     height={link.size}
+                    style={{ width: `${link.size}px`, height: "auto" }}
                   />
                 </a>
               ))}

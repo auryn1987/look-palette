@@ -131,7 +131,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "saving"}
-        className="button-primary w-full sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white sm:w-auto"
       >
         {status === "saving" ? "Sending..." : "Send message"}
       </button>

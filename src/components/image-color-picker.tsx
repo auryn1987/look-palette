@@ -258,12 +258,12 @@ export function ImageColorPicker() {
             <p className="mt-2 leading-7 text-stone-600">{helpText}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <label className="button-primary cursor-pointer">
+            <label className="inline-flex min-h-12 cursor-pointer items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white">
               Upload image
               <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
             </label>
             <select
-              className="rounded-full border border-stone-300 bg-white px-4 py-3"
+              className="min-h-12 rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950"
               value={format}
               onChange={(event) => updateFormat(event.target.value as ColorFormat)}
             >
@@ -275,7 +275,7 @@ export function ImageColorPicker() {
             <button
               type="button"
               onClick={reset}
-              className="rounded-full border border-stone-300 px-5 py-3 font-semibold text-stone-700"
+              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white"
             >
               Reset
             </button>
@@ -306,7 +306,11 @@ export function ImageColorPicker() {
             </p>
           </div>
           {colors.length ? (
-            <button type="button" onClick={copyPalette} className="button-primary">
+            <button
+              type="button"
+              onClick={copyPalette}
+              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white"
+            >
               Copy full palette
             </button>
           ) : null}

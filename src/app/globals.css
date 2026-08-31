@@ -111,6 +111,31 @@ summary::-webkit-details-marker {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-ink);
+  background: white;
+  color: var(--color-ink);
+  padding: 0.85rem 1.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.button-outline:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: white;
+}
+
 .eyebrow {
   letter-spacing: 0.16em;
   text-transform: uppercase;

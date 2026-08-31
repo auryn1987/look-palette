@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { EarlyAccessForm } from "@/components/early-access-form";
-import { allPaletteSummaries } from "@/lib/site-data";
+import { heroSeasonalPalettes } from "@/lib/data/heroSeasonalPalettes";
 
 const steps = [
   {
@@ -142,24 +142,16 @@ export default function SeasonalColorAnalysisPage() {
 
       <section className="shell section-space pt-0">
         <div className="surface rounded-[2rem] px-6 py-10 sm:px-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <p className="eyebrow text-[var(--color-accent)]">Coming Soon</p>
-              <h2 className="mt-3 text-4xl font-semibold text-stone-950">
-                Know your colors. Shop with confidence.
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-stone-600">
-                We&apos;re building Look Palette to go beyond discovering your
-                season. You&apos;ll be able to explore clothing selected to complement
-                your palette, making it easier to find colors that work for you.
-              </p>
-            </div>
-            <Link
-              href="#early-access"
-              className="inline-flex items-center justify-center rounded-full border border-black bg-white px-5 py-3 font-semibold text-stone-950 transition hover:bg-black hover:text-white"
-            >
-              Get Early Access
-            </Link>
+          <div className="max-w-3xl">
+            <p className="eyebrow text-[var(--color-accent)]">Coming Soon</p>
+            <h2 className="mt-3 text-4xl font-semibold text-stone-950">
+              Know your colors. Shop with confidence.
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-stone-600">
+              We&apos;re building Look Palette to go beyond discovering your
+              season. You&apos;ll be able to explore clothing selected to complement
+              your palette, making it easier to find colors that work for you.
+            </p>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {productPreviews.map((item) => (
@@ -208,52 +200,53 @@ export default function SeasonalColorAnalysisPage() {
             with it.
           </p>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {allPaletteSummaries.map((palette) => (
-            <Link
-              key={palette.slug}
-              href={`/palettes/${palette.slug}`}
-              className="surface group overflow-hidden rounded-[1.75rem] transition hover:-translate-y-0.5 hover:shadow-[0_24px_60px_rgba(51,38,22,0.12)]"
-            >
-              <div className="relative aspect-[4/4.6] overflow-hidden">
-                <Image
-                  src={palette.image}
-                  alt={palette.name}
-                  fill
-                  sizes="(min-width: 1280px) 22vw, (min-width: 640px) 45vw, 100vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                />
+        <div className="space-y-8">
+          {heroSeasonalPalettes.map((season) => (
+            <section key={season.key}>
+              <div className="mb-4">
+                <p className="eyebrow text-[var(--color-accent)]">{season.name}</p>
               </div>
-              <div className="grid grid-cols-5">
-                {palette.bestColors.slice(0, 5).map((color) => (
-                  <div
-                    key={color}
-                    className="h-4"
-                    style={{ backgroundColor: color }}
-                  />
+              <div className="grid gap-5 lg:grid-cols-3">
+                {season.subtypes.map((palette) => (
+                  <Link
+                    key={palette.slug}
+                    href={`/palettes/${palette.slug}`}
+                    className="surface group overflow-hidden rounded-[1.75rem] transition hover:-translate-y-0.5 hover:shadow-[0_24px_60px_rgba(51,38,22,0.12)]"
+                  >
+                    <div className="relative aspect-[4/4.6] overflow-hidden">
+                      <Image
+                        src={palette.image}
+                        alt={palette.name}
+                        fill
+                        sizes="(min-width: 1024px) 30vw, 100vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="grid grid-cols-5">
+                      {palette.bestColors.slice(0, 5).map((color) => (
+                        <div
+                          key={color}
+                          className="h-4"
+                          style={{ backgroundColor: color }}
+                        />
+                      ))}
+                    </div>
+                    <div className="p-5">
+                      <p className="eyebrow text-[var(--color-accent)]">
+                        {season.name}
+                      </p>
+                      <h3 className="mt-2 text-xl font-semibold text-stone-950">
+                        {palette.name}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-stone-600">
+                        {palette.shortDescription}
+                      </p>
+                    </div>
+                  </Link>
                 ))}
               </div>
-              <div className="p-5">
-                <p className="eyebrow text-[var(--color-accent)]">
-                  {palette.baseSeason}
-                </p>
-                <h3 className="mt-2 text-xl font-semibold text-stone-950">
-                  {palette.name}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-stone-600">
-                  {palette.shortDescription}
-                </p>
-              </div>
-            </Link>
+            </section>
           ))}
-        </div>
-        <div className="mt-8">
-          <Link
-            href="/palettes"
-            className="inline-flex items-center justify-center rounded-full border border-black bg-white px-5 py-3 font-semibold text-stone-950 transition hover:bg-black hover:text-white"
-          >
-            Browse Palettes
-          </Link>
         </div>
       </section>
 
