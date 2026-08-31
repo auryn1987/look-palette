@@ -58,7 +58,9 @@ export function ContactForm() {
     } catch (error) {
       setStatus("error");
       setMessage(
-        error instanceof Error ? error.message : "Unable to send your message.",
+        error instanceof Error && error.message
+          ? error.message
+          : "Unable to send your message.",
       );
     }
   }

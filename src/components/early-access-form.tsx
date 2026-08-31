@@ -43,7 +43,9 @@ export function EarlyAccessForm({
     } catch (error) {
       setStatus("error");
       setMessage(
-        error instanceof Error ? error.message : "Unable to join the list right now.",
+        error instanceof Error && error.message
+          ? error.message
+          : "Unable to join the list right now.",
       );
     }
   }

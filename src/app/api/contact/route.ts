@@ -1,11 +1,15 @@
-import { fetchMutation } from "convex/nextjs";
-import { ConvexError } from "convex/values";
 import type { NextRequest } from "next/server";
+import { ConvexError } from "convex/values";
 import { api } from "../../../../convex/_generated/api";
 import {
   getConvexErrorMessage,
   isConvexConfigured,
-} from "@/lib/convex-errors";
+  logConvexError,
+  runMutation,
+} from "@/lib/convex-server";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 3;
@@ -58,7 +62,7 @@ export async function POST(request: NextRequest) {
       message?: string;
     };
 
-    await fetchMutation(api.contact.submit, {
+    await runMutation(api.contact.submit, {
       firstName: body.firstName ?? "",
       lastName: body.lastName ?? "",
       email: body.email ?? "",
@@ -76,9 +80,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.error("Contact submission failed:", error);
+    logConvexError("Contact submission failed:", error);
     return Response.json(
-      { error: "Unable to send your message." },
+      {
+        error: getConvexErrorMessage(error, "Unable to send your message."),
+      },
       { status: 500 },
     );
   }

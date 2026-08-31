@@ -1,11 +1,15 @@
-import { fetchMutation } from "convex/nextjs";
-import { ConvexError } from "convex/values";
 import type { NextRequest } from "next/server";
+import { ConvexError } from "convex/values";
 import { api } from "../../../../convex/_generated/api";
 import {
   getConvexErrorMessage,
   isConvexConfigured,
-} from "@/lib/convex-errors";
+  logConvexError,
+  runMutation,
+} from "@/lib/convex-server";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 5;
@@ -52,7 +56,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = (await request.json()) as { email?: string; source?: string };
-    const result = await fetchMutation(api.waitlist.subscribe, {
+    const result = await runMutation(api.waitlist.subscribe, {
       email: body.email ?? "",
       source: body.source ?? "unknown",
     });
@@ -75,9 +79,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.error("Waitlist signup failed:", error);
+    logConvexError("Waitlist signup failed:", error);
     return Response.json(
-      { error: "Unable to join the list right now." },
+      {
+        error: getConvexErrorMessage(
+          error,
+          "Unable to join the list right now.",
+        ),
+      },
       { status: 500 },
     );
   }
