@@ -7,7 +7,7 @@ const headerLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--color-ink)]/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[var(--color-ink)]">
       <div className="shell flex items-center justify-between gap-6 py-4 text-white">
         <Link className="font-display text-3xl tracking-wide text-white md:text-4xl" href="/">
           LOOK PALETTE

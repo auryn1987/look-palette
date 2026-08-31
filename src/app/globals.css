@@ -24,6 +24,7 @@
 }
 
 html {
+  background: var(--color-ink);
   scroll-behavior: smooth;
 }
 
