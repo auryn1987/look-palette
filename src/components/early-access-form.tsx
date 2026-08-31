@@ -3,6 +3,12 @@
 import type { FormEvent } from "react";
 import { useState } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export function EarlyAccessForm({
   buttonLabel = "Join Early Access",
   placeholder = "Enter your email",
@@ -31,7 +37,11 @@ export function EarlyAccessForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, source }),
       });
-      const data = (await response.json()) as { message?: string; error?: string };
+      const data = (await response.json()) as {
+        alreadySubscribed?: boolean;
+        message?: string;
+        error?: string;
+      };
 
       if (!response.ok) {
         throw new Error(data.error ?? "Unable to join the list right now.");
@@ -40,6 +50,10 @@ export function EarlyAccessForm({
       setStatus("success");
       setMessage(data.message ?? "You are on the early access list.");
       setEmail("");
+
+      if (!data.alreadySubscribed && typeof window.gtag === "function") {
+        window.gtag("event", "early_access_signup");
+      }
     } catch (error) {
       setStatus("error");
       setMessage(

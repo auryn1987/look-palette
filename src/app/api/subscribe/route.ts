@@ -62,6 +62,7 @@ export async function POST(request: NextRequest) {
     });
 
     return Response.json({
+      alreadySubscribed: result.alreadySubscribed,
       message: result.alreadySubscribed
         ? "You're already on the early access list."
         : "You're on the early access list.",
