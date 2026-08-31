@@ -5,6 +5,7 @@ import { useState } from "react";
 
 declare global {
   interface Window {
+    fbq?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
   }
 }
@@ -53,6 +54,10 @@ export function EarlyAccessForm({
 
       if (!data.alreadySubscribed && typeof window.gtag === "function") {
         window.gtag("event", "early_access_signup");
+      }
+
+      if (!data.alreadySubscribed && typeof window.fbq === "function") {
+        window.fbq("track", "Lead");
       }
     } catch (error) {
       setStatus("error");
