@@ -1,7 +1,65 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const UTM_STORAGE_KEY = "look-palette-utms";
+
+type UtmParameters = {
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+};
+
+const utmQueryKeys = {
+  utm_source: "utmSource",
+  utm_medium: "utmMedium",
+  utm_campaign: "utmCampaign",
+  utm_content: "utmContent",
+} as const;
+
+const utmProperties = Object.values(utmQueryKeys);
+
+function getUtmParameters(): UtmParameters {
+  const query = new URLSearchParams(window.location.search);
+  const fromUrl: UtmParameters = {};
+
+  for (const [queryKey, property] of Object.entries(utmQueryKeys)) {
+    const value = query.get(queryKey)?.trim();
+    if (value) {
+      fromUrl[property] = value;
+    }
+  }
+
+  try {
+    if (Object.keys(fromUrl).length > 0) {
+      window.sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(fromUrl));
+      return fromUrl;
+    }
+
+    const stored = window.sessionStorage.getItem(UTM_STORAGE_KEY);
+    if (!stored) {
+      return {};
+    }
+
+    const parsed = JSON.parse(stored) as Partial<
+      Record<(typeof utmProperties)[number], unknown>
+    >;
+    const fromStorage: UtmParameters = {};
+
+    for (const property of utmProperties) {
+      const value = parsed[property];
+      if (typeof value === "string" && value.trim()) {
+        fromStorage[property] = value.trim();
+      }
+    }
+
+    return fromStorage;
+  } catch {
+    return fromUrl;
+  }
+}
 
 declare global {
   interface Window {
@@ -27,6 +85,10 @@ export function EarlyAccessForm({
   );
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    getUtmParameters();
+  }, []);
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("saving");
@@ -36,7 +98,7 @@ export function EarlyAccessForm({
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, ...getUtmParameters() }),
       });
       const data = (await response.json()) as {
         alreadySubscribed?: boolean;

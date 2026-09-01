@@ -55,10 +55,21 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = (await request.json()) as { email?: string; source?: string };
+    const body = (await request.json()) as {
+      email?: string;
+      source?: string;
+      utmSource?: string;
+      utmMedium?: string;
+      utmCampaign?: string;
+      utmContent?: string;
+    };
     const result = await runMutation(api.waitlist.subscribe, {
       email: body.email ?? "",
       source: body.source ?? "unknown",
+      utmSource: body.utmSource,
+      utmMedium: body.utmMedium,
+      utmCampaign: body.utmCampaign,
+      utmContent: body.utmContent,
     });
 
     return Response.json({
