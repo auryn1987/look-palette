@@ -29,7 +29,7 @@ export function PaletteCard({ palette }: { palette: PaletteSummary }) {
         ))}
       </div>
       <div className="p-6">
-        <p className="eyebrow text-[var(--color-accent)]">{palette.baseSeason}</p>
+        <p className="eyebrow text-accent">{palette.baseSeason}</p>
         <h3 className="mt-2 text-2xl font-semibold text-stone-950">{palette.name}</h3>
         <p className="mt-3 text-sm leading-7 text-stone-600">
           {palette.shortDescription}

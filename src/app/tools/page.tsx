@@ -49,7 +49,7 @@ export default function ToolsPage() {
               buttonLabel: "Open Tool",
             },
           ].map((tool) => (
-            <div key={tool.href} className="surface overflow-hidden rounded-[2rem]">
+            <div key={tool.href} className="surface overflow-hidden rounded-4xl">
               <div
                 className="h-64 bg-cover bg-center"
                 style={{ backgroundImage: `url('${tool.image}')` }}

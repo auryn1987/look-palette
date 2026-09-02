@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { EarlyAccessForm } from "@/components/early-access-form";
+import { MarketingHero } from "@/components/marketing-hero";
 import { heroSeasonalPalettes } from "@/lib/data/heroSeasonalPalettes";
 
 const steps = [
@@ -61,55 +62,19 @@ export const metadata: Metadata = {
 export default function SeasonalColorAnalysisPage() {
   return (
     <div>
-      <section
+      <MarketingHero
         id="early-access"
-        className="relative overflow-hidden border-b border-black/10 bg-[var(--color-paper)]"
-      >
-        <div className="absolute inset-0">
-          <Image
-            src="/hero/hero-image-seasonal-color.avif"
-            alt="Free seasonal color analysis"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-white/28" />
-        </div>
-        <div className="shell relative py-24 sm:py-32">
-          <div className="max-w-4xl rounded-[2rem] bg-[rgba(255,253,249,0.78)] p-8 shadow-[0_24px_60px_rgba(51,38,22,0.1)] backdrop-blur-sm sm:p-10">
-            <p className="eyebrow text-stone-950">Look Palette</p>
-            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-semibold text-stone-950 sm:text-7xl">
-              Discover the colors that look best on you
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl">
-              Join early access to Look Palette&apos;s free seasonal color analysis.
-              Discover your season, explore your personal palette, and learn which
-              colors complement you.
-            </p>
-            <p className="mt-6 text-base font-semibold uppercase tracking-[0.16em] text-stone-950">
-              Free seasonal color analysis. Coming soon.
-            </p>
-            <div className="mt-10 max-w-2xl rounded-[1.5rem] bg-white p-5">
-              <EarlyAccessForm
-                source="seasonal-analysis-hero"
-                buttonLabel="Join Waitlist"
-                placeholder="Email address"
-                theme="light"
-              />
-              <p className="mt-3 text-sm text-stone-600">
-                Join the early access list and be among the first to discover
-                your palette.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        eyebrow="Look Palette"
+        source="seasonal-analysis-hero"
+        image="/hero/hero-image-seasonal-color.avif"
+        title="Discover the colors that look best on you"
+        description="Join early access to Look Palette's free seasonal color analysis. Discover your season, explore your personal palette, and learn which colors complement you."
+      />
 
       <section className="shell section-space">
-        <div className="surface rounded-[2rem] px-6 py-10 sm:px-10">
+        <div className="surface rounded-4xl px-6 py-10 sm:px-10">
           <div className="max-w-3xl">
-            <p className="eyebrow text-[var(--color-accent)]">How It Works</p>
+            <p className="eyebrow text-accent">How It Works</p>
             <h2 className="mt-3 text-4xl font-semibold text-stone-950">
               Your personal palette, made simple
             </h2>
@@ -125,7 +90,7 @@ export default function SeasonalColorAnalysisPage() {
                 key={item.step}
                 className="rounded-[1.75rem] border border-black/10 bg-white p-6"
               >
-                <p className="font-display text-5xl text-[var(--color-accent)]">
+                <p className="font-display text-5xl text-accent">
                   {item.step}
                 </p>
                 <h3 className="mt-4 text-2xl font-semibold text-stone-950">
@@ -141,9 +106,9 @@ export default function SeasonalColorAnalysisPage() {
       </section>
 
       <section className="shell section-space pt-0">
-        <div className="surface rounded-[2rem] px-6 py-10 sm:px-10">
+        <div className="surface rounded-4xl px-6 py-10 sm:px-10">
           <div className="max-w-3xl">
-            <p className="eyebrow text-[var(--color-accent)]">Coming Soon</p>
+            <p className="eyebrow text-accent">Coming Soon</p>
             <h2 className="mt-3 text-4xl font-semibold text-stone-950">
               Know your colors. Shop with confidence.
             </h2>
@@ -159,9 +124,9 @@ export default function SeasonalColorAnalysisPage() {
                 key={item.name}
                 className="overflow-hidden rounded-[1.75rem] border border-black/10 bg-white"
               >
-                <div className="flex h-44 items-end bg-[linear-gradient(160deg,#f8f3ea,#ede3d5)] p-5">
+                <div className="flex h-44 items-end bg-linear-[160deg,#f8f3ea,#ede3d5] p-5">
                   <div className="w-full rounded-[1.25rem] border border-black/10 bg-white/85 p-4 backdrop-blur">
-                    <p className="eyebrow text-[var(--color-accent)]">Preview</p>
+                    <p className="eyebrow text-accent">Preview</p>
                     <h3 className="mt-2 text-xl font-semibold text-stone-950">
                       {item.name}
                     </h3>
@@ -190,7 +155,7 @@ export default function SeasonalColorAnalysisPage() {
 
       <section className="shell section-space pt-0">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow text-[var(--color-accent)]">Palette Library</p>
+          <p className="eyebrow text-accent">Palette Library</p>
           <h2 className="mt-3 text-4xl font-semibold text-stone-950">
             Explore the 12 seasons
           </h2>
@@ -204,7 +169,7 @@ export default function SeasonalColorAnalysisPage() {
           {heroSeasonalPalettes.map((season) => (
             <section key={season.key}>
               <div className="mb-4">
-                <p className="eyebrow text-[var(--color-accent)]">{season.name}</p>
+                <p className="eyebrow text-accent">{season.name}</p>
               </div>
               <div className="grid gap-5 lg:grid-cols-3">
                 {season.subtypes.map((palette) => (
@@ -232,7 +197,7 @@ export default function SeasonalColorAnalysisPage() {
                       ))}
                     </div>
                     <div className="p-5">
-                      <p className="eyebrow text-[var(--color-accent)]">
+                      <p className="eyebrow text-accent">
                         {season.name}
                       </p>
                       <h3 className="mt-2 text-xl font-semibold text-stone-950">
@@ -251,7 +216,7 @@ export default function SeasonalColorAnalysisPage() {
       </section>
 
       <section className="shell section-space pt-0">
-        <div className="overflow-hidden rounded-[2rem] bg-[var(--color-ink)] px-6 py-10 text-white sm:px-10">
+        <div className="overflow-hidden rounded-4xl bg-ink px-6 py-10 text-white sm:px-10">
           <div className="max-w-3xl">
             <p className="eyebrow text-white/72">Early Access</p>
             <h2 className="mt-3 text-4xl font-semibold">Find your palette</h2>

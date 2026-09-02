@@ -17,7 +17,7 @@ export default function ContactPage() {
         tone="light"
       />
       <div className="shell section-space">
-        <div className="surface mx-auto max-w-3xl rounded-[2rem] p-6 sm:p-10">
+        <div className="surface mx-auto max-w-3xl rounded-4xl p-6 sm:p-10">
           <ContactForm />
         </div>
       </div>

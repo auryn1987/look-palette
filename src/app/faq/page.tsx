@@ -102,7 +102,7 @@ const faqs = [
         </div>
         <p className="mt-4">
           You can explore all 12 in our free{" "}
-          <Link className="font-semibold text-[var(--color-brand)]" href="/palettes">
+          <Link className="font-semibold text-brand" href="/palettes">
             Palette Library
           </Link>
           .
@@ -120,7 +120,7 @@ const faqs = [
         </p>
         <p className="mt-4">
           If you already know or suspect your season, you can also explore the{" "}
-          <Link className="font-semibold text-[var(--color-brand)]" href="/palettes">
+          <Link className="font-semibold text-brand" href="/palettes">
             Palette Library
           </Link>{" "}
           to learn more about its colors and characteristics.
@@ -168,12 +168,12 @@ const faqs = [
         <p>Yes.</p>
         <p className="mt-4">
           Our{" "}
-          <Link className="font-semibold text-[var(--color-brand)]" href="/palettes">
+          <Link className="font-semibold text-brand" href="/palettes">
             Palette Library
           </Link>{" "}
           is available for anyone who wants to explore the 12 seasons, and the{" "}
           <Link
-            className="font-semibold text-[var(--color-brand)]"
+            className="font-semibold text-brand"
             href="/tools/color-picker"
           >
             Image Color Picker
@@ -212,7 +212,7 @@ const faqs = [
         <p className="mt-4">
           You can read our{" "}
           <Link
-            className="font-semibold text-[var(--color-brand)]"
+            className="font-semibold text-brand"
             href="/privacy-policy"
           >
             Privacy Policy
@@ -244,7 +244,7 @@ const faqs = [
     answer: (
       <p>
         We&apos;d be happy to hear from you. Visit our{" "}
-        <Link className="font-semibold text-[var(--color-brand)]" href="/contact">
+        <Link className="font-semibold text-brand" href="/contact">
           Contact page
         </Link>{" "}
         to get in touch.
@@ -269,7 +269,7 @@ export default function FaqPage() {
         tone="light"
       />
       <div className="shell section-space">
-        <div className="surface rounded-[2rem] p-6 sm:p-10">
+        <div className="surface rounded-4xl p-6 sm:p-10">
           <div className="max-w-3xl">
             <h2 className="text-3xl font-semibold text-stone-950 sm:text-4xl">
               Frequently Asked Questions

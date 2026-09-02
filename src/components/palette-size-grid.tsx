@@ -12,10 +12,10 @@ export function PaletteSizeGrid({ paletteName }: { paletteName: string }) {
   const colors = getPaletteColors(paletteName, selectedSize);
 
   return (
-    <section className="surface rounded-[2rem] p-6 sm:p-8">
+    <section className="surface rounded-4xl p-6 sm:p-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="eyebrow text-[var(--color-accent)]">Core Palette</p>
+          <p className="eyebrow text-accent">Core Palette</p>
           <h2 className="mt-2 text-2xl font-semibold">Color Palette</h2>
           <p className="mt-2 text-stone-600">
             Switch palette size to view a tighter or broader range of recommended

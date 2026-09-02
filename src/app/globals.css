@@ -13,6 +13,14 @@
 }
 
 @theme inline {
+  --color-cream: #faf6ef;
+  --color-paper: #fffdf9;
+  --color-ink: #191510;
+  --color-muted: #5f564f;
+  --color-brand: #1f4a46;
+  --color-brand-soft: #d8ebe6;
+  --color-accent: #dd6d3b;
+  --color-line: #ddd2c5;
   --color-background: var(--color-cream);
   --color-foreground: var(--color-ink);
   --font-sans: var(--font-inter);

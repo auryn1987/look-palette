@@ -177,7 +177,7 @@ export function ImageColorPicker() {
   function handleCanvasClick(event: MouseEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current;
     const offscreen = offscreenCanvasRef.current;
-    if (!canvas || !offscreen) {
+    if (!canvas || offscreen!) {
       return;
     }
 
@@ -251,14 +251,14 @@ export function ImageColorPicker() {
 
   return (
     <div className="space-y-8">
-      <div className="surface rounded-[2rem] p-6 sm:p-8">
+      <div className="surface rounded-4xl p-6 sm:p-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-2xl font-semibold">Image color picker</h2>
             <p className="mt-2 leading-7 text-stone-600">{helpText}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <label className="inline-flex min-h-12 cursor-pointer items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white">
+            <label className="inline-flex min-h-12 cursor-pointer items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:border-black! hover:bg-black! hover:text-white!">
               Upload image
               <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
             </label>
@@ -275,29 +275,29 @@ export function ImageColorPicker() {
             <button
               type="button"
               onClick={reset}
-              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white"
+              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:border-black! hover:bg-black! hover:text-white!"
             >
               Reset
             </button>
           </div>
         </div>
 
-        <div className="mt-8 rounded-[2rem] border border-dashed border-stone-300 bg-white/70 p-4">
+        <div className="mt-8 rounded-4xl border border-dashed border-stone-300 bg-white/70 p-4">
           {imageSource ? (
             <canvas
               ref={canvasRef}
-              className="mx-auto w-full cursor-crosshair rounded-[1.5rem]"
+              className="mx-auto w-full cursor-crosshair rounded-3xl"
               onClick={handleCanvasClick}
             />
           ) : (
-            <div className="flex h-72 items-center justify-center rounded-[1.5rem] bg-stone-100 text-center text-stone-500">
+            <div className="flex h-72 items-center justify-center rounded-3xl bg-stone-100 text-center text-stone-500">
               Upload an image to start sampling colors.
             </div>
           )}
         </div>
       </div>
 
-      <div className="surface rounded-[2rem] p-6 sm:p-8">
+      <div className="surface rounded-4xl p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold">Picked colors</h2>
@@ -309,7 +309,7 @@ export function ImageColorPicker() {
             <button
               type="button"
               onClick={copyPalette}
-              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white"
+              className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:border-black! hover:bg-black! hover:text-white!"
             >
               Copy full palette
             </button>
@@ -322,10 +322,10 @@ export function ImageColorPicker() {
               {colors.map((color, index) => (
                 <div
                   key={`${color}-${index}`}
-                  className="rounded-[1.5rem] border border-stone-200 bg-white p-4"
+                  className="rounded-3xl border border-stone-200 bg-white p-4"
                 >
                   <div
-                    className="h-24 rounded-[1rem] border border-black/8"
+                    className="h-24 rounded-2xl border border-black/8"
                     style={{ backgroundColor: normalizeHex(color) }}
                   />
                   <button
@@ -349,11 +349,11 @@ export function ImageColorPicker() {
             <textarea
               readOnly
               value={colors.join(",\n")}
-              className="mt-6 min-h-40 w-full rounded-[1.5rem] border border-stone-300 bg-white px-4 py-3 text-sm text-stone-700"
+              className="mt-6 min-h-40 w-full rounded-3xl border border-stone-300 bg-white px-4 py-3 text-sm text-stone-700"
             />
           </>
         ) : (
-          <div className="mt-6 rounded-[1.5rem] bg-stone-50 p-6 text-stone-600">
+          <div className="mt-6 rounded-3xl bg-stone-50 p-6 text-stone-600">
             Your sampled palette will appear here.
           </div>
         )}

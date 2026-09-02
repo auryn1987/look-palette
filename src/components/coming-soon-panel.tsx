@@ -9,8 +9,8 @@ export function ComingSoonPanel({
 }) {
   return (
     <div className="shell section-space">
-      <div className="surface rounded-[2rem] p-8 text-center sm:p-12">
-        <p className="eyebrow text-[var(--color-accent)]">Migration In Progress</p>
+      <div className="surface rounded-4xl p-8 text-center sm:p-12">
+        <p className="eyebrow text-accent">Migration In Progress</p>
         <h1 className="mt-3 text-4xl font-semibold">{title}</h1>
         <p className="mx-auto mt-4 max-w-2xl leading-8 text-stone-600">
           {description}
@@ -20,7 +20,7 @@ export function ComingSoonPanel({
             Explore the color analysis tool
           </Link>
           <Link
-            className="button-secondary !border-stone-300 !bg-white !text-stone-900"
+            className="button-secondary border-stone-300! bg-white! text-stone-900!"
             href="/contact"
           >
             Contact for early access

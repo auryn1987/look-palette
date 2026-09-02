@@ -76,7 +76,7 @@ export function ContactForm() {
             onChange={updateField}
             required
             maxLength={50}
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--color-brand)]"
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-brand"
             placeholder="Enter your first name"
           />
         </label>
@@ -88,7 +88,7 @@ export function ContactForm() {
             onChange={updateField}
             required
             maxLength={50}
-            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--color-brand)]"
+            className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-brand"
             placeholder="Enter your last name"
           />
         </label>
@@ -102,7 +102,7 @@ export function ContactForm() {
           value={form.email}
           onChange={updateField}
           required
-          className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--color-brand)]"
+          className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-brand"
           placeholder="Enter your email"
         />
       </label>
@@ -116,7 +116,7 @@ export function ContactForm() {
           onChange={updateField}
           required
           maxLength={MAX_MESSAGE_LENGTH}
-          className="w-full rounded-[1.5rem] border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-[var(--color-brand)]"
+          className="w-full rounded-3xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-brand"
           placeholder="Tell us what you need help with."
         />
         <p className="text-right text-xs text-stone-500">
@@ -133,7 +133,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "saving"}
-        className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:!border-black hover:!bg-black hover:!text-white sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap rounded-full border border-black bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition hover:border-black! hover:bg-black! hover:text-white! sm:w-auto"
       >
         {status === "saving" ? "Sending..." : "Send message"}
       </button>

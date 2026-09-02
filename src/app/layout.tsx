@@ -41,7 +41,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[var(--color-cream)] text-stone-950">
+      <body className="min-h-full bg-cream text-stone-950">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VH7XSDP7VY"
           strategy="afterInteractive"

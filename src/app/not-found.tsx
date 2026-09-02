@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="shell section-space">
-      <div className="surface rounded-[2rem] p-8 text-center sm:p-12">
-        <p className="eyebrow text-[var(--color-accent)]">Not Found</p>
+      <div className="surface rounded-4xl p-8 text-center sm:p-12">
+        <p className="eyebrow text-accent">Not Found</p>
         <h1 className="mt-3 text-4xl font-semibold">That page does not exist.</h1>
         <p className="mx-auto mt-4 max-w-2xl leading-8 text-stone-600">
           The new Next.js rebuild preserves most of the original routes, but this one
@@ -15,7 +15,7 @@ export default function NotFound() {
             Back Home
           </Link>
           <Link
-            className="button-secondary !border-stone-300 !bg-white !text-stone-900"
+            className="button-secondary border-stone-300! bg-white! text-stone-900!"
             href="/palettes"
           >
             Browse Palettes

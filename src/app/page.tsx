@@ -1,44 +1,20 @@
 import Link from "next/link";
-import { EarlyAccessForm } from "@/components/early-access-form";
+import { MarketingHero } from "@/components/marketing-hero";
 import { PaletteCard } from "@/components/palette-card";
 import { allPaletteSummaries } from "@/lib/site-data";
 
 export default function HomePage() {
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-black/10 bg-[var(--color-paper)]">
-        <div className="absolute inset-0 bg-[url('/hero/hero-spring-clear.avif')] bg-cover bg-center opacity-80" />
-        <div className="absolute inset-0 bg-white/28" />
-        <div className="shell relative py-24 sm:py-32">
-          <div className="max-w-4xl rounded-[2rem] bg-[rgba(255,253,249,0.78)] p-8 shadow-[0_24px_60px_rgba(51,38,22,0.1)] backdrop-blur-sm sm:p-10">
-            <h1 className="max-w-3xl text-balance text-5xl font-semibold text-stone-950 sm:text-7xl">
-              Discover the colors that look best on you
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl">
-              Find your seasonal color palette and learn which colors complement
-              you - from what to wear to what to shop.
-            </p>
-            <p className="mt-6 text-base font-semibold uppercase tracking-[0.16em] text-stone-950">
-              Free seasonal color analysis. Coming soon.
-            </p>
-            <div className="mt-10 max-w-2xl rounded-[1.5rem] bg-white p-5">
-              <EarlyAccessForm
-                source="home-hero"
-                buttonLabel="Join Waitlist"
-                placeholder="Email address"
-                theme="light"
-              />
-              <p className="mt-3 text-sm text-stone-600">
-                Join the early access list and be among the first to discover
-                your palette.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MarketingHero
+        source="home-hero"
+        image="/hero/hero-spring-clear.avif"
+        title="Discover the colors that look best on you"
+        description="Find your seasonal color palette and learn which colors to wear, buy, and build your wardrobe around."
+      />
 
       <section className="shell section-space">
-        <div className="surface mb-12 rounded-[2rem] px-6 py-10 sm:px-10">
+        <div className="surface mb-12 rounded-4xl px-6 py-10 sm:px-10">
           <div className="grid gap-8 lg:grid-cols-3">
             {[
               {
@@ -61,7 +37,7 @@ export default function HomePage() {
               },
             ].map((item) => (
               <div key={item.step}>
-                <p className="font-display text-5xl text-[var(--color-accent)]">
+                <p className="font-display text-5xl text-accent">
                   {item.step}
                 </p>
                 <h2 className="mt-4 text-2xl font-semibold">{item.title}</h2>
@@ -72,7 +48,7 @@ export default function HomePage() {
         </div>
 
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow text-[var(--color-accent)]">Palette Library</p>
+          <p className="eyebrow text-accent">Palette Library</p>
           <h2 className="mt-3 text-4xl font-semibold text-stone-950">
             Explore the full twelve-season system
           </h2>
@@ -91,7 +67,7 @@ export default function HomePage() {
 
       <section className="shell section-space">
         <div className="mb-10 max-w-3xl">
-          <p className="eyebrow text-[var(--color-accent)]">Free Tool</p>
+          <p className="eyebrow text-accent">Free Tool</p>
           <h2 className="mt-3 text-4xl font-semibold">
             Use the image color picker today
           </h2>
@@ -103,7 +79,7 @@ export default function HomePage() {
         </div>
         <Link
           href="/tools/color-picker"
-          className="surface group block overflow-hidden rounded-[2rem]"
+          className="surface group block overflow-hidden rounded-4xl"
         >
           <div
             className="h-72 bg-cover bg-center transition duration-300 group-hover:scale-[1.01]"

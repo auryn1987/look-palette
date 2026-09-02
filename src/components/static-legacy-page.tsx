@@ -34,7 +34,7 @@ export async function StaticLegacyPage({
       ) : null}
       <div className="shell section-space">
         <div
-          className="legacy-content surface rounded-[2rem] p-6 sm:p-10"
+          className="legacy-content surface rounded-4xl p-6 sm:p-10"
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>

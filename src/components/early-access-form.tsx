@@ -145,7 +145,7 @@ export function EarlyAccessForm({
           className={
             isDark
               ? "w-full rounded-full border border-white/15 bg-white/6 px-5 py-3 text-white placeholder:text-white/45 outline-none transition focus:border-white/40"
-              : "w-full rounded-full border border-stone-300 bg-white px-5 py-3 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-[var(--color-ink)]"
+              : "w-full rounded-full border border-stone-300 bg-white px-5 py-3 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-ink"
           }
         />
         <button
@@ -153,7 +153,7 @@ export function EarlyAccessForm({
           disabled={status === "saving"}
           className={
             isDark
-              ? "whitespace-nowrap rounded-full bg-white px-5 py-3 font-semibold text-[var(--color-ink)] transition hover:bg-white/90 disabled:opacity-70"
+              ? "whitespace-nowrap rounded-full bg-white px-5 py-3 font-semibold text-ink transition hover:bg-white/90 disabled:opacity-70"
               : "whitespace-nowrap rounded-full bg-black px-5 py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-70"
           }
         >

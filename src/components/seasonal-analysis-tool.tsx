@@ -144,7 +144,7 @@ export function SeasonalAnalysisTool() {
   }
 
   function nextStep() {
-    if (currentQuestion.required && !answers[currentQuestion.id]) {
+    if (currentQuestion.required && answers[currentQuestion.id]!) {
       setError("Please select an answer to continue.");
       return;
     }
@@ -237,7 +237,7 @@ export function SeasonalAnalysisTool() {
   return (
     <div className="space-y-10">
       {!analysisResult ? (
-        <div className="surface rounded-[2rem] p-6 sm:p-8">
+        <div className="surface rounded-4xl p-6 sm:p-8">
           <div className="mb-8">
             <div className="mb-2 flex justify-between text-sm text-stone-600">
               <span>
@@ -247,7 +247,7 @@ export function SeasonalAnalysisTool() {
             </div>
             <div className="h-2 rounded-full bg-stone-200">
               <div
-                className="h-2 rounded-full bg-[var(--color-brand)] transition-all"
+                className="h-2 rounded-full bg-brand transition-all"
                 style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
               />
             </div>
@@ -261,7 +261,7 @@ export function SeasonalAnalysisTool() {
               <p className="mt-2 text-sm text-stone-500">Required</p>
             ) : null}
             {"help" in currentQuestion && currentQuestion.help ? (
-              <div className="mt-4 rounded-[1.5rem] border border-sky-200 bg-sky-50 p-4 text-sm leading-7 text-sky-900">
+              <div className="mt-4 rounded-3xl border border-sky-200 bg-sky-50 p-4 text-sm leading-7 text-sky-900">
                 {currentQuestion.help}
               </div>
             ) : null}
@@ -278,9 +278,9 @@ export function SeasonalAnalysisTool() {
                     key={option.id}
                     type="button"
                     onClick={() => selectAnswer(currentQuestion.id, option.id)}
-                    className={`overflow-hidden rounded-[1.5rem] border-4 text-left transition ${
+                    className={`overflow-hidden rounded-3xl border-4 text-left transition ${
                       selected
-                        ? "border-[var(--color-brand)] shadow-lg"
+                        ? "border-brand shadow-lg"
                         : "border-transparent hover:border-stone-200"
                     }`}
                   >
@@ -310,9 +310,9 @@ export function SeasonalAnalysisTool() {
                     key={option.id}
                     type="button"
                     onClick={() => selectAnswer(currentQuestion.id, option.id)}
-                    className={`rounded-[1.5rem] border-2 p-5 text-left transition ${
+                    className={`rounded-3xl border-2 p-5 text-left transition ${
                       selected
-                        ? "border-[var(--color-brand)] bg-[var(--color-brand-soft)]"
+                        ? "border-brand bg-brand-soft"
                         : "border-stone-200 bg-white hover:border-stone-300"
                     }`}
                   >
@@ -359,7 +359,7 @@ export function SeasonalAnalysisTool() {
           </div>
         </div>
       ) : (
-        <div className="surface rounded-[2rem] p-6 sm:p-8">
+        <div className="surface rounded-4xl p-6 sm:p-8">
           {paletteData ? (
             <Link
               href={`/palettes/${paletteData.slug}`}
@@ -393,7 +393,7 @@ export function SeasonalAnalysisTool() {
             </Link>
           ) : null}
 
-          <div className="rounded-[1.5rem] bg-stone-50 p-5">
+          <div className="rounded-3xl bg-stone-50 p-5">
             <h3 className="text-xl font-semibold">Your Seasonal Palette</h3>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <SeasonBadge season={analysisResult.seasonal_palette.primary} />
@@ -415,7 +415,7 @@ export function SeasonalAnalysisTool() {
             {Object.entries(analysisResult.characteristics)
               .sort((left, right) => left[1].rank - right[1].rank)
               .map(([key, value]) => (
-                <div key={key} className="rounded-[1.5rem] border border-stone-200 bg-white p-5">
+                <div key={key} className="rounded-3xl border border-stone-200 bg-white p-5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
                       <p className="text-sm uppercase tracking-[0.16em] text-stone-500">
@@ -434,7 +434,7 @@ export function SeasonalAnalysisTool() {
               ))}
           </div>
 
-          <div className="mt-8 rounded-[1.5rem] bg-stone-50 p-5">
+          <div className="mt-8 rounded-3xl bg-stone-50 p-5">
             <h3 className="text-lg font-semibold">How to use this result</h3>
             <p className="mt-3 text-sm leading-7 text-stone-600">
               Value tells you whether light or dark colors feel more balanced on you.
@@ -449,7 +449,7 @@ export function SeasonalAnalysisTool() {
         </div>
       )}
 
-      <div className="surface rounded-[2rem] p-6 sm:p-8">
+      <div className="surface rounded-4xl p-6 sm:p-8">
         <h2 className="text-2xl font-semibold">Understanding the 12-season system</h2>
         <div className="mt-5 grid gap-6 md:grid-cols-3">
           {[
@@ -469,7 +469,7 @@ export function SeasonalAnalysisTool() {
                 "Measures whether clear, bright colors or softened, muted colors feel more aligned with you.",
             },
           ].map((item) => (
-            <div key={item.title} className="rounded-[1.5rem] border border-stone-200 bg-white p-5">
+            <div key={item.title} className="rounded-3xl border border-stone-200 bg-white p-5">
               <h3 className="text-xl font-semibold">{item.title}</h3>
               <p className="mt-3 leading-7 text-stone-600">{item.description}</p>
             </div>

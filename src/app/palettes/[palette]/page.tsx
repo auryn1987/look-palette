@@ -50,14 +50,14 @@ function ResourceGrid({
   const desktopColumns = items.length >= 6 ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
   return (
-    <section className="surface rounded-[2rem] p-6 sm:p-8">
+    <section className="surface rounded-4xl p-6 sm:p-8">
       <h2 className="text-2xl font-semibold">{title}</h2>
       <p className="mt-3 leading-7 text-stone-600">{description}</p>
       <div className={`mt-6 grid gap-4 sm:grid-cols-2 ${desktopColumns}`}>
         {items.map((item) => (
           <div
             key={item}
-            className="overflow-hidden rounded-[1.5rem] border border-black/8 bg-white"
+            className="overflow-hidden rounded-3xl border border-black/8 bg-white"
           >
             <div className="relative aspect-square">
               <Image
@@ -86,7 +86,7 @@ function SwatchSection({
   colors: string[];
 }) {
   return (
-    <section className="surface rounded-[2rem] p-6 sm:p-8">
+    <section className="surface rounded-4xl p-6 sm:p-8">
       <h2 className="text-2xl font-semibold">{title}</h2>
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {colors.map((color) => (
@@ -134,8 +134,8 @@ export default async function PaletteDetailPage({
           <div
             className={
               useLightHeaderText
-                ? "absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/15"
-                : "absolute inset-0 bg-gradient-to-r from-white/72 via-white/44 to-white/16"
+                ? "absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/15"
+                : "absolute inset-0 bg-linear-to-r from-white/72 via-white/44 to-white/16"
             }
           />
         </div>
@@ -168,12 +168,12 @@ export default async function PaletteDetailPage({
 
       <div className="shell section-space space-y-8">
         <section className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="surface rounded-[2rem] p-6 sm:p-8">
-            <p className="eyebrow text-[var(--color-accent)]">{detail.season}</p>
+          <div className="surface rounded-4xl p-6 sm:p-8">
+            <p className="eyebrow text-accent">{detail.season}</p>
             <h2 className="mt-2 text-2xl font-semibold">Palette Description</h2>
             <p className="mt-4 leading-8 text-stone-600">{detail.description}</p>
           </div>
-          <div className="surface rounded-[2rem] p-6 sm:p-8">
+          <div className="surface rounded-4xl p-6 sm:p-8">
             <h2 className="text-2xl font-semibold">Skin Range</h2>
             <p className="mt-4 leading-8 text-stone-600">{detail.skinDescription}</p>
             <div className="mt-6 grid grid-cols-5 gap-2">

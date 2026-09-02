@@ -22,7 +22,7 @@ export default function PalettesPage() {
         {heroSeasonalPalettes.map((season) => (
           <section key={season.key}>
             <div className="mb-10 max-w-3xl">
-              <p className="eyebrow text-[var(--color-accent)]">{season.name}</p>
+              <p className="eyebrow text-accent">{season.name}</p>
               <h2 className="mt-3 text-4xl font-semibold">{season.name} Palettes</h2>
               <p className="mt-4 text-lg leading-8 text-stone-600">
                 {season.description}
