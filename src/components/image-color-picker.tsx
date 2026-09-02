@@ -177,7 +177,7 @@ export function ImageColorPicker() {
   function handleCanvasClick(event: MouseEvent<HTMLCanvasElement>) {
     const canvas = canvasRef.current;
     const offscreen = offscreenCanvasRef.current;
-    if (!canvas || offscreen!) {
+    if (!canvas || !offscreen) {
       return;
     }
 
